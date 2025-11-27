@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Get Well Soon — Masooma 💖</title>
+  <style>
+    :root{--accent:#ff4d88;--bg:#ffdde1;--muted:#666}
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0}
+
+    /* Layout: two-column on wide screens (70% main / 30% side). On small screens show main full with side hidden; main uses 70vh so it visually fills ~70% of screen height. */
+    .wrap{
+      min-height:100vh;
+      display:grid;
+      grid-template-columns: 70% 30%;
+      gap:0;
+      align-items:center;
+      justify-items:center;
+      background: linear-gradient(135deg,var(--bg),#cce7ff);
+      padding:12px;
+    }
+
+    /* SIDE shows an animated cartoon background or illustration that occupies 30% on wide screens. */
+    .side{
+      width:100%;
+      height:88vh;
+      max-height:880px;
+      border-radius:18px;
+      background-image: url('https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif');
+      background-size:cover;
+      background-position:center;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+      display:block;
+    }
+
+    /* MAIN card takes the primary focus and should be visually dominant. On mobile it will take 70vh. */
+    .main{
+      width:100%;
+      max-width:900px;
+      background: rgba(255,255,255,0.98);
+      border-radius:18px;
+      box-shadow: 0 18px 36px rgba(0,0,0,0.12);
+      padding:20px 22px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:flex-start;
+      min-height:70vh; /* makes the main visual occupy ~70% of viewport height on mobile */
+    }
+
+    h1{color:var(--accent);font-family:'Comic Sans MS','Poppins',sans-serif;margin:6px 0 8px;font-size:2rem;text-align:center}
+    p{color:#222;font-size:1.05rem;line-height:1.45;margin:6px 0;text-align:center}
+
+    .video-wrap{width:100%;border-radius:12px;overflow:hidden;margin:10px 0}
+    video{display:block;width:100%;height:auto;border-radius:8px}
+
+    .cartoons{display:flex;gap:14px;justify-content:center;margin:12px 0}
+    .cartoon{font-size:52px;transform-origin:center;animation:float 3s ease-in-out infinite}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+    .btn{background:var(--accent);color:white;border:none;padding:12px 20px;border-radius:999px;font-size:1.05rem;cursor:pointer;margin-top:8px}
+    .btn:active{transform:scale(.98)}
+
+    #joke{margin-top:14px;font-size:1.15rem;color:#111;min-height:56px;text-align:center}
+
+    .prayer{margin-top:14px;background:#fff0f5;padding:12px;border-radius:12px;font-style:italic;color:#cc0066;max-width:95%}
+    footer{margin-top:10px;font-size:0.95rem;color:var(--muted)}
+
+    /* Small screens: stack, hide the decorative side panel, make main occupy the center and 70vh height */
+    @media (max-width:720px){
+      .wrap{grid-template-columns:1fr; padding:10px}
+      .side{display:none}
+      .main{min-height:70vh;padding:16px}
+      h1{font-size:1.6rem}
+      .cartoon{font-size:48px}
+      #joke{font-size:1.2rem}
+    }
+
+    /* Very small phones: increase readability further */
+    @media (max-width:380px){
+      h1{font-size:1.45rem}
+      p{font-size:1.03rem}
+      .cartoon{font-size:44px}
+      #joke{font-size:1.18rem}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+
+    <!-- MAIN (70%) -->
+    <main class="main" role="main">
+      <h1>Get Well Soon, Masooma 🌸</h1>
+
+      <div class="video-wrap">
+        <!-- muted looping video for surprise effect; keeps visual interest but no sound -->
+        <video autoplay loop muted playsinline>
+          <source src="https://cdn.pixabay.com/vimeo/239676900/cartoon-11943.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <p><strong>Lekin aaj ka mara mission hai:</strong>    EXTRA hansi chorail ki tarha!, and a little fun — right from your bahiyaa 💕</p>
+
+      <div class="cartoons" aria-hidden="true">
+        <div class="cartoon">🐻</div>
+        <div class="cartoon">🐰</div>
+        <div class="cartoon">🦄</div>
+      </div>
+
+      <button class="btn" onclick="makeFun()">Surprise me — Make me laugh 😂</button>
+
+      <div id="joke" aria-live="polite"></div>
+
+      <div class="prayer" aria-live="polite">
+        🤲 Special Prayer for you, Masooma 🤍<br>
+         "Ya Allah, Masooma ko jaldi sehat da taka mara saath larna start kara 
+      aur pir burger kaya 😂😂 .Ameen." 🌙
+      </div>
+
+      <footer>From your loving brother — Bilal 💕</footer>
+    </main>
+
+    <!-- SIDE (30%) decorative — on small screens this is hidden so main gets attention -->
+    <aside class="side" aria-hidden="true"></aside>
+
+  </div>
+
+<script>
+  const jokes = [
+    "Doctor ne kaha: Rest lo! Masooma ne kaha: Netflix?! 😜",
+    "Bimari bhi confuse hai: Yeh bachi itni happy kyun hai? 😂",
+    "Masooma + Blanket + Cartoons = Ultimate Queen Mode 👑",
+    "Aaj ki medicine: 1 smile + 2 chocolates 🍫😋",
+    "Warning: Zyada hansi se pet dard ho sakta hai 🤣"
+  ];
+
+  function makeFun(){
+    const random = jokes[Math.floor(Math.random()*jokes.length)];
+    const el = document.getElementById('joke');
+    el.innerText = random;
+    el.style.transform = 'scale(1.03)';
+    el.style.transition = 'transform 180ms ease';
+    setTimeout(()=> el.style.transform = 'scale(1)', 180);
+    // Optional: show small confetti visual (no sound) — can add later if you want
+  }
+</script>
+
+</body>
+</html>
