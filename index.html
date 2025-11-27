@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Get Well Soon Masooma 💖</title>
+  <style>
+    :root{--accent:#ff4d88}
+    *{box-sizing:border-box}
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffdde1, #cce7ff);
+      background-image: url('https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif');
+      background-position: center;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.96);
+      border-radius: 18px;
+      padding: 18px;
+      width: 100%;
+      max-width: 720px;
+      text-align: center;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+      animation: pop 650ms ease;
+    }
+
+    @keyframes pop {
+      from{transform:translateY(8px);opacity:0} to{transform:none;opacity:1}
+    }
+
+    h1 {
+      color: var(--accent);
+      font-size: 1.6rem;
+      margin: 8px 0 12px;
+    }
+
+    p { color:#333; margin:8px 0; line-height:1.4 }
+
+    .cartoons{display:flex;justify-content:space-around;margin:14px 0}
+    .cartoon{font-size:46px; animation:float 3s ease-in-out infinite}
+    .cartoon:nth-child(2){animation-delay:0.8s}
+    .cartoon:nth-child(3){animation-delay:1.6s}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+    .btn{background:var(--accent);color:white;border:none;padding:10px 18px;border-radius:999px;font-size:1rem;cursor:pointer}
+    .btn:active{transform:scale(.98)}
+
+    #joke{margin-top:12px;font-size:1.05rem;color:#222;min-height:42px}
+
+    .prayer{margin-top:16px;background:#fff0f5;padding:12px;border-radius:12px;font-style:italic;color:#cc0066}
+    footer{margin-top:12px;font-size:0.9rem;color:#666}
+
+    /* Responsive tweaks for small phones */
+    @media (max-width:420px){
+      h1{font-size:1.3rem}
+      .cartoon{font-size:40px}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>See you soon my sakeena 🌸</h1>
+
+    <!-- Video surprise: plays silently (muted) and looped so it won't disturb -->
+    <video width="100%" style="border-radius:14px; margin-bottom:12px;" autoplay loop muted playsinline>
+      <source src="https://cdn.pixabay.com/vimeo/239676900/cartoon-11943.mp4" type="video/mp4">
+      <!-- If video fails, browser will ignore and page still works -->
+    </video>
+
+    <p>
+      Tum bemar ho kar bhi smile kar rahi ho 😄<br>
+      Lekin aaj ka mara mission hai: EXTRA hansi chorail ki tarha!
+    </p>
+
+    <div class="cartoons">
+      <div class="cartoon">🐻</div>
+      <div class="cartoon">🐰</div>
+      <div class="cartoon">🦄</div>
+    </div>
+
+    <p><strong>Tap this magic button for surprise fun 👇</strong></p>
+    <button class="btn" onclick="makeFun()">Make Me Laugh 😂</button>
+
+    <div id="joke" aria-live="polite"></div>
+
+    <div class="prayer">
+      🤲 Special Prayer for you, Masooma 🤍<br>
+      "Ya Allah, Masooma ko jaldi sehat da taka mara saath larna start kara 
+      aur pir burger kaya 😂😂 .Ameen." 🌙
+    </div>
+
+    <footer>
+      From your cutest 😂😂😂 baiyaa  💕
+    </footer>
+  </div>
+
+  <div style="margin-top:12px; font-size:0.9rem; color:#555; text-align:center; width:100%; max-width:720px">📱 Optimized for mobile with smooth cartoon background — no sound included</div>
+
+<script>
+  // Clean, safe JS: does NOT reference any missing audio elements.
+  const jokes = [
+    "Doctor ne kaha: Rest lo! Masooma ne kaha: Netflix?! 😜",
+    "Bimari bhi confuse hai: Yeh bachi itni happy kyun hai? 😂",
+    "Masooma + Blanket + Cartoons = Ultimate Queen Mode 👑",
+    "Aaj ki medicine: 1 smile + 2 chocolates 🍫😋",
+    "Warning: Zyada hansi se pet dard ho sakta hai 🤣"
+  ];
+
+  function makeFun() {
+    // Choose a random joke and show it. No audio calls so no errors.
+    const random = jokes[Math.floor(Math.random() * jokes.length)];
+    const el = document.getElementById('joke');
+    el.innerText = random;
+    // small visual pulse to draw attention
+    el.style.transform = 'scale(1.02)';
+    el.style.transition = 'transform 160ms ease';
+    setTimeout(()=> el.style.transform = 'scale(1)', 160);
+  }
+</script>
+
+</body>
+</html>
